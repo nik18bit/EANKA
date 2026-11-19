@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /policy.html
+
+Sitemap: https://eanka.ru/sitemap.xml
+Host: https://eanka.ru
