@@ -123,23 +123,24 @@ ul, ol { list-style: none; }
 }
 
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-.section { padding: 24px 0; position: relative; }
 
-/* Якорь — прокрутка точно к началу секции, без лишнего отступа */
+/* Секции без верхнего padding — заголовок прилипает к шапке */
+.section { padding: 0 0 24px 0; position: relative; }
+
+/* Якорь — прокрутка точно к началу секции, без отступа */
 #services, #about, #contacts {
-  scroll-margin-top: 70px;
+  scroll-margin-top: 0;
 }
 
 @media (max-width: 768px) {
-  .section { padding: 20px 0; }
+  .section { padding: 0 0 20px 0; }
   .container { padding: 0 20px; }
-  #services, #about, #contacts { scroll-margin-top: 60px; }
 }
 
 .section-label {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--accent-dark); margin-bottom: 8px;
+  text-transform: uppercase; color: var(--accent-dark); margin-bottom: 6px;
 }
 .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
 .section-title {
@@ -148,7 +149,7 @@ ul, ol { list-style: none; }
   line-height: 1.05;
   font-weight: 400;
   letter-spacing: -.02em;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--text);
 }
 .section-title em { font-style: italic; color: var(--accent-dark); }
@@ -226,12 +227,12 @@ ul, ol { list-style: none; }
   .burger { display: flex; }
 }
 
-/* HERO */
+/* HERO — уменьшен до 85vh, фото растягивается на высоту текста */
 .hero {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  padding: 90px 0 30px;
+  padding: 90px 0 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -339,19 +340,19 @@ ul, ol { list-style: none; }
   .hero-actions { flex-wrap: wrap; }
 }
 
-/* SERVICES */
+/* SERVICES — компактные карточки, без подзаголовка и "Подробнее" */
 .services { background: var(--bg); }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 .service-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 18px 16px;
+  padding: 16px 18px;
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
@@ -367,19 +368,13 @@ ul, ol { list-style: none; }
   width: 38px; height: 38px; border-radius: 10px;
   background: var(--bg-alt);
   display: flex; align-items: center; justify-content: center;
-  color: var(--accent-dark); margin-bottom: 12px;
+  color: var(--accent-dark); margin-bottom: 10px;
   transition: all var(--transition);
 }
 .service-card:hover .service-icon { background: var(--accent); color: var(--bg); transform: rotate(-6deg); }
 .service-icon svg { width: 18px; height: 18px; }
 .service-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -.01em; }
-.service-card p { color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
-.service-link {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; font-weight: 600; color: var(--accent-dark);
-}
-.service-link svg { width: 12px; height: 12px; transition: transform .3s; }
-.service-card:hover .service-link svg { transform: translateX(3px); }
+.service-card p { color: var(--text-muted); font-size: 13px; line-height: 1.45; }
 
 @media (max-width: 700px) {
   .services-grid { grid-template-columns: 1fr; }
@@ -391,7 +386,7 @@ ul, ol { list-style: none; }
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 .about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
 .about-text p:first-child { font-size: 17px; color: var(--text); font-weight: 500; }
@@ -426,7 +421,7 @@ ul, ol { list-style: none; }
 
 /* WHY US */
 .why { background: var(--bg-alt); }
-.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
 .why-card {
   background: var(--surface);
   padding: 18px 14px;
@@ -461,7 +456,7 @@ ul, ol { list-style: none; }
 .contacts .section-title em { color: var(--accent-light); }
 .contacts .section-subtitle { color: rgba(250, 247, 242, .7); }
 
-.contacts-wrapper { margin-top: 16px; }
+.contacts-wrapper { margin-top: 12px; }
 
 .contacts-email {
   display: inline-flex;
@@ -647,249 +642,4 @@ ul, ol { list-style: none; }
     <div class="hero-visual reveal" aria-hidden="true">
       <img src="images/office.jpg" alt="Рабочее пространство студии eanka.ru в Казани" width="600" height="750" loading="eager" fetchpriority="high" decoding="async">
     </div>
-  </div>
-</section>
-
-<section class="section services" id="services" aria-labelledby="services-title">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Услуги</div>
-      <h2 class="section-title" id="services-title">Что мы <em>создаём</em></h2>
-      <p class="section-subtitle">Каждый проект — индивидуальное решение под задачи вашего бизнеса.</p>
-    </div>
-    <div class="services-grid">
-      <article class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3>Лендинги</h3>
-        <p>Продающие одностраничники с продуманной структурой и высокой конверсией. Идеально для запуска продукта или услуги.</p>
-        <a href="#contacts" class="service-link">
-          Подробнее
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </article>
-      <article class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg>
-        </div>
-        <h3>Редизайн сайтов</h3>
-        <p>Современный облик для существующего сайта. Сохраняем структуру, обновляем визуал и улучшаем удобство.</p>
-        <a href="#contacts" class="service-link">
-          Подробнее
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </article>
-      <article class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        </div>
-        <h3>Индивидуальный дизайн</h3>
-        <p>Уникальные макеты, отражающие характер вашего бренда. Никаких шаблонов — только ручная работа дизайнера.</p>
-        <a href="#contacts" class="service-link">
-          Подробнее
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </article>
-      <article class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Поддержка и развитие</h3>
-        <p>Техническое сопровождение, обновления, доработки. Ваш сайт всегда в надёжных руках и работает без сбоев.</p>
-        <a href="#contacts" class="service-link">
-          Подробнее
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section about" id="about" aria-labelledby="about-title">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">О нас</div>
-      <h2 class="section-title" id="about-title">Команда <em>eanka</em></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Мы — команда, влюблённая в своё дело. Каждый проект для нас — это возможность создать что-то по-настоящему качественное и полезное.</p>
-        <p>Студия eanka.ru базируется в Казани, но работает с клиентами по всей России. Мы ценим доверие, поэтому подходим к каждой задаче с полной отдачей.</p>
-        <p>Наша философия проста: делать красиво, делать качественно и делать в срок. Без компромиссов.</p>
-        <div class="about-features">
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            </div>
-            <div class="txt">Индивидуальный подход к каждому проекту</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div class="txt">Соблюдение сроков и договорённостей</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </div>
-            <div class="txt">Современные технологии и решения</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="txt">Поддержка на всех этапах работы</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-photo reveal">
-        <img src="images/team.jpg" alt="Команда студии eanka.ru" width="600" height="450" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section why" aria-labelledby="why-title">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Преимущества</div>
-      <h2 class="section-title" id="why-title">Почему <em>выбирают</em> нас</h2>
-      <p class="section-subtitle">Четыре причины, по которым клиенты возвращаются и рекомендуют нас друзьям.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <h3>Качество</h3>
-        <p>Каждый пиксель продуман. Мы не выпускаем проект, пока он не станет безупречным.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <h3>Сроки</h3>
-        <p>Чёткие дедлайны и прозрачный график. Вы всегда знаете, когда получите результат.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-        </div>
-        <h3>Прозрачность</h3>
-        <p>Никаких скрытых платежей и сюрпризов. Всё обсуждается заранее и фиксируется.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3>Поддержка</h3>
-        <p>После запуска мы не пропадаем. Всегда на связи и готовы помочь с любыми вопросами.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section contacts" id="contacts" aria-labelledby="contacts-title">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Контакты</div>
-      <h2 class="section-title" id="contacts-title">Давайте <em>обсудим</em> ваш проект</h2>
-      <p class="section-subtitle">Выберите удобный способ связи — мы ответим в течение рабочего дня.</p>
-    </div>
-    <div class="contacts-wrapper reveal">
-      <a href="mailto:eanka@yandex.ru" class="contacts-email">
-        <div>
-          <div class="lbl">Почта</div>
-          <div class="val">eanka@yandex.ru</div>
-        </div>
-      </a>
-      <div class="contacts-buttons">
-        <a href="tel:+79272497922" class="contact-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Позвонить
-        </a>
-        <a href="https://t.me/R200124" target="_blank" rel="noopener noreferrer" class="contact-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          Telegram
-        </a>
-        <a href="https://wa.me/79272497922" target="_blank" rel="noopener noreferrer" class="contact-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-inner">
-      <a href="#" class="logo">
-        <span class="logo-mark">e</span>
-        <span>eanka.ru</span>
-      </a>
-      <div class="footer-links">
-        <a href="/policy.html">Политика конфиденциальности</a>
-        <a href="#services">Услуги</a>
-        <a href="#contacts">Контакты</a>
-      </div>
-    </div>
-    <div class="footer-copy">© 2026 eanka.ru — Создание и разработка сайтов в Казани и по всей России. Все права защищены.</div>
-  </div>
-</footer>
-
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление о cookies">
-  <p>Мы используем cookies для корректной работы сайта. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="/policy.html">политикой конфиденциальности</a>.</p>
-  <button class="cookie-btn" id="cookieAccept">Принять</button>
-</div>
-
-<script>
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-const burger = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
-burger.addEventListener('click', () => {
-  const isActive = burger.classList.toggle('active');
-  mobileMenu.classList.toggle('active', isActive);
-  burger.setAttribute('aria-expanded', isActive);
-  document.body.style.overflow = isActive ? 'hidden' : '';
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const cookieBanner = document.getElementById('cookieBanner');
-const cookieAccept = document.getElementById('cookieAccept');
-if (!localStorage.getItem('cookieAccepted')) {
-  setTimeout(() => cookieBanner.classList.add('show'), 1500);
-}
-cookieAccept.addEventListener('click', () => {
-  localStorage.setItem('cookieAccepted', 'true');
-  cookieBanner.classList.remove('show');
-});
-</script>
-
-</body>
-</html>
+  
