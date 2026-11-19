@@ -125,6 +125,7 @@ ul, ol { list-style: none; }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .section { padding: 0; position: relative; }
 
+/* Прокрутка точно к началу секции — без лишнего отступа */
 #services, #about, #contacts {
   scroll-margin-top: 0;
 }
@@ -331,7 +332,9 @@ ul, ol { list-style: none; }
 
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero-visual { max-width: 360px; margin: 0 auto; aspect-ratio: 4/5; }
+  /* На мобильных фото показывается целиком — без обрезки */
+  .hero-visual { max-width: 100%; margin: 0 auto; }
+  .hero-visual img { object-fit: contain; max-height: 70vh; }
   .hero-meta { gap: 20px; }
   .hero-actions { flex-wrap: wrap; }
 }
@@ -371,7 +374,6 @@ ul, ol { list-style: none; }
 .service-icon svg { width: 16px; height: 16px; }
 .service-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; letter-spacing: -.01em; }
 .service-card p { color: var(--text-muted); font-size: 12px; line-height: 1.45; margin-bottom: 8px; }
-.service-link { display: none; }
 
 @media (max-width: 700px) {
   .services-grid { grid-template-columns: 1fr; }
@@ -455,6 +457,7 @@ ul, ol { list-style: none; }
 
 .contacts-wrapper { margin-top: 16px; }
 
+/* Все 4 кнопки в один стиль — pill-форма */
 .contacts-buttons {
   display: flex;
   gap: 12px;
