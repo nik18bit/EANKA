@@ -125,10 +125,7 @@ ul, ol { list-style: none; }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .section { padding: 0; position: relative; }
 
-/* Прокрутка точно к началу секции — без лишнего отступа */
-#services, #about, #contacts {
-  scroll-margin-top: 0;
-}
+#services, #about, #contacts { scroll-margin-top: 0; }
 
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
@@ -332,7 +329,8 @@ ul, ol { list-style: none; }
 
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  /* На мобильных фото показывается целиком — без обрезки */
+  /* На мобильных скрываем текст, чтобы фото было видно целиком */
+  .hero-text { display: none; }
   .hero-visual { max-width: 100%; margin: 0 auto; }
   .hero-visual img { object-fit: contain; max-height: 70vh; }
   .hero-meta { gap: 20px; }
@@ -457,7 +455,6 @@ ul, ol { list-style: none; }
 
 .contacts-wrapper { margin-top: 16px; }
 
-/* Все 4 кнопки в один стиль — pill-форма */
 .contacts-buttons {
   display: flex;
   gap: 12px;
