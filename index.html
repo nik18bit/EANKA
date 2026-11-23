@@ -202,7 +202,22 @@ ul, ol { list-style: none; }
 .nav a:hover { color: var(--text); }
 .nav a:hover::after { width: 100%; }
 
-.header-cta { padding: 10px 22px; font-size: 14px; min-height: 40px; }
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  transition: color .3s ease;
+}
+.header-phone svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-dark);
+}
+.header-phone:hover { color: var(--accent-dark); }
+.header-phone:hover svg { color: var(--accent); }
 
 .burger {
   display: none; width: 44px; height: 44px;
@@ -222,7 +237,7 @@ ul, ol { list-style: none; }
 .mobile-menu a { font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--text); }
 
 @media (max-width: 960px) {
-  .nav, .header-cta { display: none; }
+  .nav, .header-phone { display: none; }
   .burger { display: flex; }
 }
 
