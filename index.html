@@ -39,6 +39,7 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://forms.yandex.ru" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
@@ -599,6 +600,54 @@ ul, ol { list-style: none; }
 
 .contacts-wrapper { margin-top: 16px; }
 
+/* ===== ФОРМА ОБРАТНОЙ СВЯЗИ ===== */
+.form-wrapper {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+.ya-form {
+  width: 100%;
+  min-height: 640px;
+  border: none;
+  display: block;
+  border-radius: calc(var(--radius-md) - 8px);
+  background: var(--surface);
+}
+.form-note {
+  font-size: 12px;
+  color: rgba(250, 247, 242, 0.55);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.form-note a {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
+/* Разделитель между формой и кнопками */
+.contacts-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 20px;
+  color: rgba(250, 247, 242, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.contacts-divider::before,
+.contacts-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(250, 247, 242, 0.15);
+}
+
 .contacts-buttons {
   display: flex;
   gap: 12px;
@@ -630,8 +679,13 @@ ul, ol { list-style: none; }
 @media (max-width: 900px) {
   .contact-btn { flex: 1 1 45%; }
 }
+@media (max-width: 700px) {
+  .ya-form { min-height: 760px; }
+  .form-wrapper { padding: 4px; }
+}
 @media (max-width: 600px) {
   .contact-btn { flex: 1 1 100%; }
+  .ya-form { min-height: 820px; }
 }
 
 /* FOOTER */
@@ -964,54 +1018,44 @@ ul, ol { list-style: none; }
       <h2 class="section-title section-title--small" id="portfolio-title">Выполненные проекты и <em>концепты</em> студии eanka.ru.</h2>
     </div>
     <div class="portfolio-grid">
-
       <a href="https://luizke.ru" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" aria-label="Сайт психолога luizke.ru">
         <img src="https://image.thum.io/get/width/800/crop/600/https://luizke.ru" alt="Сайт психолога luizke.ru" loading="lazy" decoding="async">
         <span class="pf-num">01</span>
         <span><span class="pf-cat">Сайт психолога</span><span class="pf-title">luizke.ru</span></span>
       </a>
-
       <a href="https://ruslanke.ru" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" aria-label="Веб-студия ruslanke.ru">
         <img src="https://image.thum.io/get/width/800/crop/600/https://ruslanke.ru" alt="Веб-студия ruslanke.ru" loading="lazy" decoding="async">
         <span class="pf-num">02</span>
         <span><span class="pf-cat">Веб-студия</span><span class="pf-title">ruslanke.ru</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта кофейни">
         <span class="pf-num">03</span>
         <span><span class="pf-cat">Дизайн</span><span class="pf-title">Кофейня</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта шиномонтажа">
         <span class="pf-num">04</span>
         <span><span class="pf-cat">Лендинг</span><span class="pf-title">Шиномонтаж</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта медицинского центра">
         <span class="pf-num">05</span>
         <span><span class="pf-cat">Редизайн</span><span class="pf-title">Медицинский центр</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта строительной фирмы">
         <span class="pf-num">06</span>
         <span><span class="pf-cat">Дизайн</span><span class="pf-title">Строительная фирма</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта магазина игрушек">
         <span class="pf-num">07</span>
         <span><span class="pf-cat">Лендинг</span><span class="pf-title">Магазин игрушек</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта кафе">
         <span class="pf-num">08</span>
         <span><span class="pf-cat">Редизайн</span><span class="pf-title">Кафе</span></span>
       </a>
-
       <a href="#" class="portfolio-card reveal" aria-label="Эскиз сайта магазина часов">
         <span class="pf-num">09</span>
         <span><span class="pf-cat">Дизайн</span><span class="pf-title">Магазин часов</span></span>
       </a>
-
     </div>
   </div>
 </section>
@@ -1061,9 +1105,34 @@ ul, ol { list-style: none; }
     <div class="reveal">
       <div class="section-label">Контакты</div>
       <h2 class="section-title" id="contacts-title">Давайте <em>обсудим</em> ваш проект</h2>
-      <p class="section-subtitle">Выберите удобный способ связи — мы ответим в течение рабочего дня.</p>
+      <p class="section-subtitle">Заполните форму — мы свяжемся с вами в течение рабочего дня. Или выберите удобный способ связи ниже.</p>
     </div>
+
     <div class="contacts-wrapper reveal">
+
+      <!-- Форма обратной связи Яндекс Формы -->
+      <div class="form-wrapper">
+        <script src="https://forms.yandex.ru/_static/embed.js"></script>
+        <iframe
+          src="https://forms.yandex.ru/u/6b04c23e49af47a530523ddc?iframe=1"
+          frameborder="0"
+          name="ya-form-6b04c23e49af47a530523ddc"
+          class="ya-form"
+          title="Форма заявки на разработку сайта"
+          loading="lazy"
+          allow="clipboard-write">
+        </iframe>
+      </div>
+      <p class="form-note">
+        Отправляя форму, вы соглашаетесь с <a href="policy.html">политикой конфиденциальности</a> и обработкой персональных данных.
+      </p>
+
+      <!-- Разделитель -->
+      <div class="contacts-divider">
+        <span>или свяжитесь напрямую</span>
+      </div>
+
+      <!-- Кнопки контактов -->
       <div class="contacts-buttons">
         <a href="mailto:eanka@yandex.ru" class="contact-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
