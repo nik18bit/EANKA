@@ -148,6 +148,10 @@ ul, ol { list-style: none; }
   color: var(--text);
 }
 .section-title em { font-style: italic; color: var(--accent-dark); }
+.section-title--small {
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.2;
+}
 .section-subtitle {
   font-size: 15px;
   color: var(--text-muted);
@@ -686,7 +690,7 @@ ul, ol { list-style: none; }
   <div class="container">
     <div class="reveal">
       <div class="section-label">Портфолио</div>
-      <h2 class="section-title" id="portfolio-title">Выполненные проекты и концепты студии eanka.ru.</h2>
+      <h2 class="section-title section-title--small" id="portfolio-title">Выполненные проекты и <em>концепты</em> студии eanka.ru.</h2>
     </div>
     <div class="portfolio-grid">
       <a href="#" class="portfolio-card reveal" aria-label="Проект 01">
