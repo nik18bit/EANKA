@@ -618,7 +618,7 @@ ul, ol { list-style: none; }
   z-index: 150;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity .5s ease, transform .5s ease;
@@ -630,30 +630,60 @@ ul, ol { list-style: none; }
   pointer-events: auto;
 }
 .sticky-btn {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
   position: relative;
+  border: none;
 }
-.sticky-btn svg { width: 20px; height: 20px; }
+.sticky-btn svg { width: 22px; height: 22px; }
 .sticky-btn:hover {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(111, 130, 105, .3);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
+
+/* Telegram — голубой */
+.sticky-btn--telegram {
+  background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+}
+.sticky-btn--telegram:hover {
+  box-shadow: 0 8px 24px rgba(42, 171, 238, 0.4);
+}
+
+/* WhatsApp — зелёный */
+.sticky-btn--whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+.sticky-btn--whatsapp:hover {
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+}
+
+/* Телефон — акцентный зелёный сайта */
+.sticky-btn--phone {
+  background: linear-gradient(135deg, #8B9D83 0%, #6F8269 100%);
+}
+.sticky-btn--phone:hover {
+  box-shadow: 0 8px 24px rgba(111, 130, 105, 0.4);
+}
+
+/* Почта — красно-оранжевый */
+.sticky-btn--email {
+  background: linear-gradient(135deg, #EA4335 0%, #C5221F 100%);
+}
+.sticky-btn--email:hover {
+  box-shadow: 0 8px 24px rgba(234, 67, 53, 0.4);
+}
+
+/* Tooltip */
 .sticky-btn .tooltip {
   position: absolute;
-  right: calc(100% + 12px);
+  right: calc(100% + 14px);
   top: 50%;
   transform: translateY(-50%);
   background: var(--text);
@@ -682,9 +712,9 @@ ul, ol { list-style: none; }
 }
 
 @media (max-width: 600px) {
-  .sticky-contacts { right: 16px; bottom: 16px; gap: 8px; }
-  .sticky-btn { width: 44px; height: 44px; }
-  .sticky-btn svg { width: 18px; height: 18px; }
+  .sticky-contacts { right: 16px; bottom: 16px; gap: 10px; }
+  .sticky-btn { width: 46px; height: 46px; }
+  .sticky-btn svg { width: 20px; height: 20px; }
   .sticky-btn .tooltip { display: none; }
 }
 
