@@ -126,7 +126,7 @@ ul, ol { list-style: none; }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .section { padding: 0; position: relative; }
 
-#services, #about, #contacts { scroll-margin-top: 0; }
+#services, #portfolio, #contacts { scroll-margin-top: 0; }
 
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
@@ -378,43 +378,62 @@ ul, ol { list-style: none; }
   .services-grid { grid-template-columns: 1fr; }
 }
 
-/* ABOUT */
-.about-grid {
+/* PORTFOLIO */
+.portfolio { background: var(--bg); }
+.portfolio-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   margin-top: 16px;
 }
-.about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
-.about-text p:first-child { font-size: 17px; color: var(--text); font-weight: 500; }
-.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-.about-feature {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px;
-  background: var(--surface);
-  border-radius: var(--radius-sm);
+.portfolio-card {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--accent-light) 140%);
   border: 1px solid var(--border);
-}
-.about-feature .ico {
-  flex-shrink: 0; width: 28px; height: 28px; border-radius: 7px;
-  background: var(--accent-light); color: var(--accent-dark);
-  display: flex; align-items: center; justify-content: center;
-}
-.about-feature .ico svg { width: 14px; height: 14px; }
-.about-feature .txt { font-size: 12px; font-weight: 500; line-height: 1.35; }
-
-.about-photo {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background: var(--bg-alt);
+  transition: all var(--transition);
 }
-.about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
+.portfolio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-light);
+}
+.portfolio-card .pf-num {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 38px;
+  line-height: 1;
+  color: rgba(26, 26, 26, .10);
+  transition: color var(--transition);
+}
+.portfolio-card:hover .pf-num { color: rgba(111, 130, 105, .35); }
+.portfolio-card .pf-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -.01em;
+}
+.portfolio-card .pf-cat {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 4px;
+}
 
-@media (max-width: 960px) {
-  .about-grid { grid-template-columns: 1fr; gap: 24px; }
-  .about-features { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
 }
 
 /* WHY US */
@@ -557,7 +576,7 @@ ul, ol { list-style: none; }
     </a>
     <nav class="nav" role="navigation" aria-label="Основная навигация">
       <a href="#services">Услуги</a>
-      <a href="#about">О нас</a>
+      <a href="#portfolio">Портфолио</a>
       <a href="#contacts">Контакты</a>
     </nav>
     <a href="#contacts" class="btn btn-primary header-cta">
@@ -572,7 +591,7 @@ ul, ol { list-style: none; }
 
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Меню">
   <a href="#services">Услуги</a>
-  <a href="#about">О нас</a>
+  <a href="#portfolio">Портфолио</a>
   <a href="#contacts">Контакты</a>
 </div>
 
@@ -660,47 +679,52 @@ ul, ol { list-style: none; }
   </div>
 </section>
 
-<section class="section about" id="about" aria-labelledby="about-title">
+<section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">О нас</div>
-      <h2 class="section-title" id="about-title">Команда <em>eanka</em></h2>
+      <div class="section-label">Портфолио</div>
+      <h2 class="section-title" id="portfolio-title">Наши <em>работы</em></h2>
+      <p class="section-subtitle">Избранные проекты студии eanka.ru.</p>
     </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Мы — команда, влюблённая в своё дело. Каждый проект для нас — это возможность создать что-то по-настоящему качественное и полезное.</p>
-        <p>Студия eanka.ru базируется в Казани, но работает с клиентами по всей России. Мы ценим доверие, поэтому подходим к каждой задаче с полной отдачей.</p>
-        <p>Наша философия проста: делать красиво, делать качественно и делать в срок. Без компромиссов.</p>
-        <div class="about-features">
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            </div>
-            <div class="txt">Индивидуальный подход к каждому проекту</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div class="txt">Соблюдение сроков и договорённостей</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </div>
-            <div class="txt">Современные технологии и решения</div>
-          </div>
-          <div class="about-feature">
-            <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="txt">Поддержка на всех этапах работы</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-photo reveal">
-        <img src="images/team.jpg" alt="Команда студии eanka.ru" width="600" height="450" loading="lazy" decoding="async">
-      </div>
+    <div class="portfolio-grid">
+      <!-- Замените ссылки и названия на реальные проекты.
+           При желании внутрь .portfolio-card можно добавить <img> со скриншотом сайта. -->
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 01">
+        <span class="pf-num">01</span>
+        <span><span class="pf-cat">Лендинг</span><span class="pf-title">Проект 01</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 02">
+        <span class="pf-num">02</span>
+        <span><span class="pf-cat">Редизайн</span><span class="pf-title">Проект 02</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 03">
+        <span class="pf-num">03</span>
+        <span><span class="pf-cat">Дизайн</span><span class="pf-title">Проект 03</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 04">
+        <span class="pf-num">04</span>
+        <span><span class="pf-cat">Лендинг</span><span class="pf-title">Проект 04</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 05">
+        <span class="pf-num">05</span>
+        <span><span class="pf-cat">Редизайн</span><span class="pf-title">Проект 05</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 06">
+        <span class="pf-num">06</span>
+        <span><span class="pf-cat">Дизайн</span><span class="pf-title">Проект 06</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 07">
+        <span class="pf-num">07</span>
+        <span><span class="pf-cat">Лендинг</span><span class="pf-title">Проект 07</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 08">
+        <span class="pf-num">08</span>
+        <span><span class="pf-cat">Редизайн</span><span class="pf-title">Проект 08</span></span>
+      </a>
+      <a href="#" class="portfolio-card reveal" aria-label="Проект 09">
+        <span class="pf-num">09</span>
+        <span><span class="pf-cat">Дизайн</span><span class="pf-title">Проект 09</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -787,6 +811,7 @@ ul, ol { list-style: none; }
       <div class="footer-links">
         <a href="policy.html">Политика конфиденциальности</a>
         <a href="#services">Услуги</a>
+        <a href="#portfolio">Портфолио</a>
         <a href="#contacts">Контакты</a>
       </div>
     </div>
