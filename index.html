@@ -205,16 +205,19 @@ ul, ol { list-style: none; }
 .header-phone {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  gap: 10px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   color: var(--text);
   transition: color .3s ease;
 }
 .header-phone svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   color: var(--accent-dark);
+  flex-shrink: 0;
 }
 .header-phone:hover { color: var(--accent-dark); }
 .header-phone:hover svg { color: var(--accent); }
