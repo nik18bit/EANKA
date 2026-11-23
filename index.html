@@ -498,6 +498,25 @@ ul, ol { list-style: none; }
   overflow: hidden;
   transition: all var(--transition);
 }
+.portfolio-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s var(--transition);
+  z-index: 0;
+}
+.portfolio-card:hover img {
+  transform: scale(1.05);
+}
+.portfolio-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.7), transparent 60%);
+  z-index: 1;
+}
 .portfolio-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
@@ -509,15 +528,18 @@ ul, ol { list-style: none; }
   font-family: 'Instrument Serif', serif;
   font-size: 38px;
   line-height: 1;
-  color: rgba(26, 26, 26, .10);
+  color: rgba(255, 255, 255, 0.35);
   transition: color var(--transition);
+  z-index: 2;
 }
-.portfolio-card:hover .pf-num { color: rgba(111, 130, 105, .35); }
+.portfolio-card:hover .pf-num { color: rgba(255, 255, 255, 0.6); }
 .portfolio-card .pf-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
+  color: #fff;
   letter-spacing: -.01em;
+  position: relative;
+  z-index: 2;
 }
 .portfolio-card .pf-cat {
   display: block;
@@ -525,8 +547,10 @@ ul, ol { list-style: none; }
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent-dark);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 900px) {
@@ -943,7 +967,7 @@ ul, ol { list-style: none; }
       <a href="https://luizke.ru" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" aria-label="Сайт психолога luizke.ru">
         <img src="https://image.thum.io/get/width/800/crop/600/https://luizke.ru" alt="Сайт психолога luizke.ru" loading="lazy" decoding="async">
         <span class="pf-num">01</span>
-        <span><span class="pf-cat">Лендинг</span><span class="pf-title">Сайт психолога</span></span>
+        <span><span class="pf-cat">Сайт психолога</span><span class="pf-title">luizke.ru</span></span>
       </a>
       <a href="https://ruslanke.ru" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" aria-label="Веб-студия ruslanke.ru">
         <img src="https://image.thum.io/get/width/800/crop/600/https://ruslanke.ru" alt="Веб-студия ruslanke.ru" loading="lazy" decoding="async">
