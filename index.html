@@ -610,10 +610,88 @@ ul, ol { list-style: none; }
   .footer-links { justify-content: center; }
 }
 
+/* STICKY CONTACTS (правый нижний угол) */
+.sticky-contacts {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+  pointer-events: none;
+}
+.sticky-contacts.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition);
+  position: relative;
+}
+.sticky-btn svg { width: 20px; height: 20px; }
+.sticky-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(111, 130, 105, .3);
+}
+.sticky-btn .tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.sticky-btn .tooltip::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: var(--text);
+}
+.sticky-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-4px);
+}
+
+@media (max-width: 600px) {
+  .sticky-contacts { right: 16px; bottom: 16px; gap: 8px; }
+  .sticky-btn { width: 44px; height: 44px; }
+  .sticky-btn svg { width: 18px; height: 18px; }
+  .sticky-btn .tooltip { display: none; }
+}
+
 /* COOKIE BANNER */
 .cookie-banner {
-  position: fixed; bottom: 20px; left: 20px; right: 20px;
-  max-width: 480px; margin: 0 auto;
+  position: fixed; bottom: 20px; left: 20px;
+  max-width: 480px;
   background: var(--surface);
   padding: 14px 18px;
   border-radius: var(--radius-md);
@@ -957,6 +1035,26 @@ ul, ol { list-style: none; }
   </div>
 </footer>
 
+<!-- Sticky contacts (правый нижний угол) -->
+<div class="sticky-contacts" id="stickyContacts" aria-label="Быстрые контакты">
+  <a href="https://t.me/R200124" target="_blank" rel="noopener noreferrer" class="sticky-btn" aria-label="Telegram">
+    <span class="tooltip">Telegram</span>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </a>
+  <a href="https://wa.me/79272497922" target="_blank" rel="noopener noreferrer" class="sticky-btn" aria-label="WhatsApp">
+    <span class="tooltip">WhatsApp</span>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:+79272497922" class="sticky-btn" aria-label="Позвонить">
+    <span class="tooltip">Позвонить</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+  <a href="mailto:eanka@yandex.ru" class="sticky-btn" aria-label="Написать на почту">
+    <span class="tooltip">Почта</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+  </a>
+</div>
+
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление о cookies">
   <p>Мы используем cookies для корректной работы сайта. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="policy.html">политикой конфиденциальности</a>.</p>
   <button class="cookie-btn" id="cookieAccept">Принять</button>
@@ -994,6 +1092,16 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Sticky contacts: появляются после небольшого скролла
+const stickyContacts = document.getElementById('stickyContacts');
+let stickyShown = false;
+window.addEventListener('scroll', () => {
+  if (!stickyShown && window.scrollY > 300) {
+    stickyContacts.classList.add('show');
+    stickyShown = true;
+  }
+}, { passive: true });
 
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
