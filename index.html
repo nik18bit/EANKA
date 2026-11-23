@@ -58,7 +58,7 @@
   "geo": { "@type": "GeoCoordinates", "latitude": "55.7887", "longitude": "49.1221" },
   "areaServed": { "@type": "Country", "name": "Россия" },
   "sameAs": ["https://t.me/R200124"],
-  "priceRange": "по запросу",
+  "priceRange": "от 500 ₽",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Услуги студии eanka.ru",
@@ -126,7 +126,7 @@ ul, ol { list-style: none; }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .section { padding: 0; position: relative; }
 
-#services, #portfolio, #contacts { scroll-margin-top: 0; }
+#services, #pricing, #portfolio, #contacts { scroll-margin-top: 0; }
 
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
@@ -385,6 +385,81 @@ ul, ol { list-style: none; }
   .services-grid { grid-template-columns: 1fr; }
 }
 
+/* PRICING */
+.pricing { background: var(--bg-alt); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pricing-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform .5s;
+}
+.pricing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--accent-light); }
+.pricing-card:hover::before { transform: scaleX(1); }
+.pricing-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--text);
+}
+.pricing-card .price {
+  font-family: 'Instrument Serif', serif;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--accent-dark);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+.pricing-card .price span {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+.pricing-card .desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.pricing-card .cta {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.pricing-card .cta a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap .3s;
+}
+.pricing-card .cta a:hover { gap: 10px; }
+.pricing-card .cta a svg { width: 14px; height: 14px; }
+
+@media (max-width: 700px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
 /* PORTFOLIO */
 .portfolio { background: var(--bg); }
 .portfolio-grid {
@@ -583,6 +658,7 @@ ul, ol { list-style: none; }
     </a>
     <nav class="nav" role="navigation" aria-label="Основная навигация">
       <a href="#services">Услуги</a>
+      <a href="#pricing">Цены</a>
       <a href="#portfolio">Портфолио</a>
       <a href="#contacts">Контакты</a>
     </nav>
@@ -598,6 +674,7 @@ ul, ol { list-style: none; }
 
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Меню">
   <a href="#services">Услуги</a>
+  <a href="#pricing">Цены</a>
   <a href="#portfolio">Портфолио</a>
   <a href="#contacts">Контакты</a>
 </div>
@@ -681,6 +758,62 @@ ul, ol { list-style: none; }
         </div>
         <h3>Поддержка и развитие</h3>
         <p>Техническое сопровождение, обновления, доработки. Ваш сайт всегда в надёжных руках.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Цены</div>
+      <h2 class="section-title" id="pricing-title">Сколько <em>стоит</em></h2>
+      <p class="section-subtitle">Прозрачные цены без скрытых платежей. Итоговая стоимость зависит от сложности проекта.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="pricing-card reveal">
+        <h3>Лендинги</h3>
+        <div class="price">от 8 000 <span>₽</span></div>
+        <p class="desc">Продающий одностраничник под ключ: дизайн, вёрстка, адаптив под мобильные устройства.</p>
+        <div class="cta">
+          <a href="#contacts">
+            Обсудить проект
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="pricing-card reveal">
+        <h3>Индивидуальный дизайн</h3>
+        <div class="price">от 3 000 <span>₽</span></div>
+        <p class="desc">Уникальный макет сайта, отражающий характер вашего бренда. Только ручная работа дизайнера.</p>
+        <div class="cta">
+          <a href="#contacts">
+            Обсудить проект
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="pricing-card reveal">
+        <h3>Редизайн сайтов</h3>
+        <div class="price">от 3 000 <span>₽</span></div>
+        <p class="desc">Современный облик для существующего сайта. Сохраняем структуру, обновляем визуал.</p>
+        <div class="cta">
+          <a href="#contacts">
+            Обсудить проект
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="pricing-card reveal">
+        <h3>Поддержка и развитие</h3>
+        <div class="price">от 500 <span>₽</span></div>
+        <p class="desc">Техническое сопровождение, обновления контента, доработки. Ваш сайт всегда в надёжных руках.</p>
+        <div class="cta">
+          <a href="#contacts">
+            Обсудить проект
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </article>
     </div>
   </div>
@@ -815,6 +948,7 @@ ul, ol { list-style: none; }
       <div class="footer-links">
         <a href="policy.html">Политика конфиденциальности</a>
         <a href="#services">Услуги</a>
+        <a href="#pricing">Цены</a>
         <a href="#portfolio">Портфолио</a>
         <a href="#contacts">Контакты</a>
       </div>
