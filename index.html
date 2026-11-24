@@ -91,6 +91,8 @@
             align-items: center;
             overflow: hidden;
             margin-top: 70px;
+            /* СТРАХОВКА: запасной цвет фона, если видео не загрузится */
+            background-color: #8fbc8f; 
         }
 
         .hero-video {
@@ -463,7 +465,8 @@
     </header>
 
     <section class="hero">
-        <video class="hero-video" autoplay loop muted playsinline>
+        <!-- Добавлен атрибут poster для страховки, если видео не загрузится -->
+        <video class="hero-video" autoplay loop muted playsinline poster="hero-bg-poster.jpg">
             <source src="hero-bg.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
