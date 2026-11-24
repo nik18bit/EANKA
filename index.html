@@ -254,7 +254,7 @@ ul, ol { list-style: none; }
   overflow: hidden;
 }
 
-/* Видеослой на весь первый экран */
+/* Видеослой на весь экран */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -263,14 +263,11 @@ ul, ol { list-style: none; }
 }
 .hero-video video {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Уменьшенное видео, центрированное. object-position смещает фокус так, чтобы оба человека были видны */
-  object-position: 52% center;
-  transform: translate(-50%, -50%) scale(0.82);
+  object-position: center;
   filter: sepia(65%) saturate(85%) contrast(95%);
 }
 /* Градиент: сплошной фон слева → прозрачный справа */
@@ -279,26 +276,29 @@ ul, ol { list-style: none; }
   inset: 0;
   background: linear-gradient(90deg,
     #FAF7F2 0%,
-    #FAF7F2 32%,
-    rgba(250, 247, 242, 0.25) 52%,
-    rgba(250, 247, 242, 0) 72%);
+    #FAF7F2 26%,
+    rgba(250, 247, 242, 0.35) 42%,
+    rgba(250, 247, 242, 0) 60%);
 }
 
-/* Две колонки: текст слева, справа пусто (видео видно) */
+/* Текст прижат к левому краю экрана, правая половина свободна для видео */
 .hero-inner {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 560px) 1fr;
   gap: 40px;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 48px;
 }
 .hero-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 440px;
-  margin-right: auto;
+  max-width: 560px;
 }
 .hero-spacer {
   /* пустой блок, просто занимает правую половину */
@@ -326,7 +326,7 @@ ul, ol { list-style: none; }
 }
 .hero h1 {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(36px, 6vw, 72px);
+  font-size: clamp(36px, 5.5vw, 68px);
   line-height: 1;
   font-weight: 400;
   letter-spacing: -.03em;
@@ -373,14 +373,11 @@ ul, ol { list-style: none; }
 @media (max-width: 991px) {
   .hero-inner {
     grid-template-columns: 1fr;
+    padding: 0 20px;
   }
   .hero-spacer { display: none; }
   .hero-content {
     max-width: 100%;
-    margin-right: 0;
-  }
-  .hero-video video {
-    transform: translate(-50%, -50%) scale(1);
   }
   .hero-video-overlay {
     background: rgba(250, 247, 242, 0.82);
@@ -915,11 +912,11 @@ ul, ol { list-style: none; }
 
   <!-- Видеофон первого экрана -->
   <div class="hero-video" aria-hidden="true">
-    <video src="video.mp4" autoplay loop muted playsinline></video>
+    <video src="video.mp4" autoplay muted playsinline></video>
     <div class="hero-video-overlay"></div>
   </div>
 
-  <div class="container hero-inner">
+  <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge reveal">
         <span class="dot"></span>
