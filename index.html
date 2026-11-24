@@ -265,12 +265,12 @@ ul, ol { list-style: none; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  /* Смещение: видео немного уменьшено (scale) и сдвинуто вправо, чтобы мужчина был виден */
-  transform: translate(-45%, -50%) scale(0.92);
-  object-position: 72% center;
+  /* Уменьшенное видео, центрированное. object-position смещает фокус так, чтобы оба человека были видны */
+  object-position: 52% center;
+  transform: translate(-50%, -50%) scale(0.82);
   filter: sepia(65%) saturate(85%) contrast(95%);
 }
 /* Градиент: сплошной фон слева → прозрачный справа */
@@ -279,9 +279,9 @@ ul, ol { list-style: none; }
   inset: 0;
   background: linear-gradient(90deg,
     #FAF7F2 0%,
-    #FAF7F2 30%,
-    rgba(250, 247, 242, 0.25) 50%,
-    rgba(250, 247, 242, 0) 70%);
+    #FAF7F2 32%,
+    rgba(250, 247, 242, 0.25) 52%,
+    rgba(250, 247, 242, 0) 72%);
 }
 
 /* Две колонки: текст слева, справа пусто (видео видно) */
@@ -297,10 +297,8 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Текст сдвинут левее — уменьшена ширина */
   max-width: 440px;
   margin-right: auto;
-  padding-left: 0;
 }
 .hero-spacer {
   /* пустой блок, просто занимает правую половину */
@@ -382,11 +380,7 @@ ul, ol { list-style: none; }
     margin-right: 0;
   }
   .hero-video video {
-    width: 100%;
-    height: 100%;
-    transform: translate(0, -50%) scale(1);
-    top: 50%;
-    left: 0;
+    transform: translate(-50%, -50%) scale(1);
   }
   .hero-video-overlay {
     background: rgba(250, 247, 242, 0.82);
@@ -1288,44 +1282,6 @@ cookieAccept.addEventListener('click', () => {
   localStorage.setItem('cookieAccepted', 'true');
   cookieBanner.classList.remove('show');
 });
-
-// ===== ПЛАВНОЕ ЗАТУХАНИЕ/ПОЯВЛЕНИЕ ВИДЕО =====
-(function() {
-  const heroVideo = document.querySelector('.hero-video video');
-  if (!heroVideo) return;
-  
-  // Добавляем CSS transition для плавности
-  heroVideo.style.transition = 'opacity 2s cubic-bezier(0.4, 0, 0.2, 1)';
-  
-  const cycleDuration = 10;
-  let lastState = 'visible';
-  
-  heroVideo.addEventListener('timeupdate', function() {
-    const currentTime = this.currentTime;
-    const normalizedTime = currentTime % cycleDuration;
-    
-    // Определяем текущее состояние
-    let targetOpacity = 1;
-    let currentState = 'visible';
-    
-    // 3.5-5.5 сек: плавное затухание (2 секунды)
-    if (normalizedTime >= 3.5 && normalizedTime < 5.5) {
-      targetOpacity = 0;
-      currentState = 'fading';
-    }
-    // 5.5-7.5 сек: плавное появление (2 секунды)
-    else if (normalizedTime >= 5.5 && normalizedTime < 7.5) {
-      targetOpacity = 1;
-      currentState = 'appearing';
-    }
-    
-    // Применяем opacity только при смене состояния
-    if (currentState !== lastState) {
-      this.style.opacity = targetOpacity;
-      lastState = currentState;
-    }
-  });
-})();
 </script>
 
 </body>
