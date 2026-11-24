@@ -611,8 +611,8 @@ ul, ol { list-style: none; }
 }
 .ya-form {
   width: 100%;
-  min-height: 640px;
-  height: 640px;
+  min-height: 520px;
+  height: 520px;
   border: none;
   display: block;
   border-radius: calc(var(--radius-md) - 8px);
@@ -681,12 +681,12 @@ ul, ol { list-style: none; }
   .contact-btn { flex: 1 1 45%; }
 }
 @media (max-width: 700px) {
-  .ya-form { min-height: 560px; height: 560px; }
+  .ya-form { min-height: 480px; height: 480px; }
   .form-wrapper { padding: 4px; }
 }
 @media (max-width: 600px) {
   .contact-btn { flex: 1 1 100%; }
-  .ya-form { min-height: 500px; height: 500px; }
+  .ya-form { min-height: 440px; height: 440px; }
 }
 
 /* FOOTER */
@@ -1288,22 +1288,22 @@ cookieAccept.addEventListener('click', () => {
   const iframe = document.getElementById('yaFormIframe');
   if (!iframe) return;
 
-  const defaultHeight = window.innerWidth < 600 ? 500 : (window.innerWidth < 700 ? 560 : 640);
+  const defaultHeight = window.innerWidth < 600 ? 440 : (window.innerWidth < 700 ? 480 : 520);
 
   window.addEventListener('message', function(event) {
     if (event.origin !== 'https://forms.yandex.ru') return;
-    if (!event.data || typeof event.data.height !== 'number') return;
-
-    const newHeight = event.data.height + 16;
-    iframe.style.height = newHeight + 'px';
-    iframe.style.minHeight = newHeight + 'px';
+    
+    const height = event.data?.height ?? event.data?.yaFormHeight;
+    if (typeof height === 'number' && height > 0) {
+      iframe.style.height = (height + 20) + 'px';
+    }
   }, false);
 
   setTimeout(function() {
-    if (iframe.style.height === '') {
+    if (iframe.style.height === '' || iframe.style.height === '0px') {
       iframe.style.height = defaultHeight + 'px';
     }
-  }, 3000);
+  }, 2000);
 })();
 </script>
 
