@@ -638,38 +638,78 @@ ul, ol { list-style: none; }
 .footer {
   background: var(--text);
   color: rgba(250, 247, 242, .6);
-  padding: 24px 0 18px;
+  padding: 48px 0 24px;
   border-top: 1px solid rgba(250, 247, 242, .08);
-  font-size: 13px;
+  font-size: 14px;
 }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-.footer-links a:hover { color: var(--bg); }
-.footer-copy { text-align: center; margin-top: 16px; font-size: 12px; }
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(250, 247, 242, .08);
+}
+.footer-brand {
+  flex: 1;
+  max-width: 320px;
+}
+.footer-brand .logo {
+  margin-bottom: 12px;
+}
+.footer-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(250, 247, 242, .5);
+  margin: 0;
+}
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-nav a {
+  font-size: 14px;
+  color: rgba(250, 247, 242, .7);
+  transition: color .3s ease;
+  text-decoration: none;
+}
+.footer-nav a:hover { color: var(--bg); }
 
 .footer-contacts {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(250, 247, 242, .08);
+  margin-bottom: 24px;
 }
 .footer-contact {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(250, 247, 242, .7);
   transition: color .3s ease;
+  text-decoration: none;
 }
 .footer-contact:hover { color: var(--bg); }
 .footer-contact svg { width: 16px; height: 16px; color: var(--accent-light); }
 
-@media (max-width: 600px) {
-  .footer-inner { flex-direction: column; text-align: center; }
-  .footer-links { justify-content: center; }
-  .footer-contacts { justify-content: center; }
+.footer-bottom {
+  text-align: center;
+}
+.footer-copy {
+  font-size: 12px;
+  color: rgba(250, 247, 242, .4);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer { padding: 32px 0 20px; }
+  .footer-top { flex-direction: column; gap: 24px; }
+  .footer-brand { max-width: 100%; }
+  .footer-nav { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+  .footer-contacts { flex-direction: column; gap: 12px; }
 }
 
 /* STICKY CONTACTS */
@@ -1103,18 +1143,21 @@ ul, ol { list-style: none; }
 
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer-inner">
-      <a href="#" class="logo">
-        <span class="logo-mark">e</span>
-        <span>eanka.ru</span>
-      </a>
-      <div class="footer-links">
-        <a href="policy.html">Политика конфиденциальности</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark">e</span>
+          <span>eanka.ru</span>
+        </a>
+        <p class="footer-desc">Создание и разработка сайтов в Казани и по всей России</p>
+      </div>
+      <nav class="footer-nav">
         <a href="#services">Услуги</a>
         <a href="#pricing">Цены</a>
         <a href="#portfolio">Портфолио</a>
         <a href="#contacts">Контакты</a>
-      </div>
+        <a href="policy.html">Политика конфиденциальности</a>
+      </nav>
     </div>
     <div class="footer-contacts">
       <a href="mailto:eanka-info@mail.ru" class="footer-contact">
@@ -1126,7 +1169,9 @@ ul, ol { list-style: none; }
         +7 (927) 249-79-22
       </a>
     </div>
-    <div class="footer-copy">© 2026 eanka.ru — Создание и разработка сайтов в Казани и по всей России. Все права защищены.</div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 eanka.ru. Все права защищены.</p>
+    </div>
   </div>
 </footer>
 
