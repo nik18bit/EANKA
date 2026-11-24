@@ -260,28 +260,29 @@ ul, ol { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
+}
 .hero-video video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Смещение фокуса вправо — люди в правой части экрана, слева пустая стена для текста */
-  object-position: 58% center;
+  /* Люди в правой части кадра, слева пустая стена под текст */
+  object-position: 65% center;
   filter: sepia(65%) saturate(85%) contrast(95%);
 }
+/* Градиент: сплошной фон слева → прозрачный справа */
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  /* Градиент короче — слева в видео уже светлая стена, текст читается хорошо */
   background: linear-gradient(90deg,
     #FAF7F2 0%,
-    #FAF7F2 20%,
-    rgba(250, 247, 242, 0.25) 35%,
-    rgba(250, 247, 242, 0) 55%);
+    #FAF7F2 22%,
+    rgba(250, 247, 242, 0.3) 38%,
+    rgba(250, 247, 242, 0) 58%);
 }
 
-/* Текст прижат к левому краю экрана, правая половина свободна для видео */
+/* Текст прижат к левому краю, правая половина свободна для видео */
 .hero-inner {
   position: relative;
   z-index: 2;
