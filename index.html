@@ -265,11 +265,11 @@ ul, ol { list-style: none; }
   position: absolute;
   top: 0;
   left: 0;
-  width: 160%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Уменьшенный сдвиг — теперь видны оба человека */
-  transform: translateX(-12%);
+  /* Смещение фокуса вправо через object-position — видно и людей, и клавиатуру */
+  object-position: 65% center;
   filter: sepia(65%) saturate(85%) contrast(95%);
 }
 /* Градиент: сплошной фон слева → прозрачный справа */
@@ -279,8 +279,8 @@ ul, ol { list-style: none; }
   background: linear-gradient(90deg,
     #FAF7F2 0%,
     #FAF7F2 35%,
-    rgba(250, 247, 242, 0.35) 50%,
-    rgba(250, 247, 242, 0) 65%);
+    rgba(250, 247, 242, 0.3) 55%,
+    rgba(250, 247, 242, 0) 75%);
 }
 
 /* Две колонки: текст слева, справа пусто (видео видно) */
@@ -377,10 +377,6 @@ ul, ol { list-style: none; }
   .hero-content {
     max-width: 100%;
     margin-right: 0;
-  }
-  .hero-video video {
-    width: 100%;
-    transform: translateX(0);
   }
   .hero-video-overlay {
     background: rgba(250, 247, 242, 0.82);
