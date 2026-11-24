@@ -244,7 +244,7 @@ ul, ol { list-style: none; }
   .burger { display: flex; }
 }
 
-/* HERO */
+/* ===== HERO С ВИДЕОФОНОМ ===== */
 .hero {
   min-height: 85vh;
   display: flex;
@@ -259,15 +259,46 @@ ul, ol { list-style: none; }
   top: -20%; right: -10%;
   width: 60%; height: 80%;
   background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
-  opacity: .35;
+  opacity: .25;
   filter: blur(80px);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
+
+/* Видеослой на весь первый экран */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* фокус кадра смещён вправо — люди и монитор в правой части экрана */
+  transform: translateX(18%);
+  /* тёплая винтажная сепия */
+  filter: sepia(65%) saturate(85%) contrast(95%);
+}
+/* Градиент: сплошной фон сайта слева → полностью прозрачный справа */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    #FAF7F2 0%,
+    #FAF7F2 42%,
+    rgba(250, 247, 242, 0.65) 62%,
+    rgba(250, 247, 242, 0) 82%);
+}
+
 .hero-inner {
-  position: relative; z-index: 1;
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   align-items: center;
 }
@@ -275,6 +306,7 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 640px;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
@@ -341,24 +373,18 @@ ul, ol { list-style: none; }
 }
 .hero-meta-item .lbl { font-size: 11px; color: var(--text-muted); letter-spacing: .02em; }
 
-.hero-visual {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background: var(--bg-alt);
-  max-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Мобильные: видео по центру, равномерная подложка */
+@media (max-width: 991px) {
+  .hero-video video {
+    transform: translateX(0);
+  }
+  .hero-video-overlay {
+    background: rgba(250, 247, 242, 0.78);
+  }
 }
-.hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
 @media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-inner { gap: 32px; }
   .hero-text { display: none; }
-  .hero-visual { max-width: 100%; margin: 0 auto; max-height: 500px; }
-  .hero-visual img { object-fit: contain; max-height: 70vh; }
   .hero-meta { gap: 20px; }
   .hero-actions { flex-wrap: wrap; }
 }
@@ -882,6 +908,13 @@ ul, ol { list-style: none; }
 <main role="main">
 
 <section class="hero" aria-labelledby="hero-title">
+
+  <!-- Видеофон первого экрана -->
+  <div class="hero-video" aria-hidden="true">
+    <video src="video.mp4" autoplay loop muted playsinline></video>
+    <div class="hero-video-overlay"></div>
+  </div>
+
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="hero-badge reveal">
@@ -916,9 +949,6 @@ ul, ol { list-style: none; }
           <div class="lbl">На связи</div>
         </div>
       </div>
-    </div>
-    <div class="hero-visual reveal" aria-hidden="true">
-      <img src="images/office.jpg" alt="Рабочее пространство студии eanka.ru в Казани" width="600" height="750" loading="eager" fetchpriority="high" decoding="async">
     </div>
   </div>
 </section>
