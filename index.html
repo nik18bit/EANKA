@@ -39,7 +39,6 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://forms.yandex.ru" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
@@ -600,55 +599,6 @@ ul, ol { list-style: none; }
 
 .contacts-wrapper { margin-top: 16px; }
 
-/* ===== ФОРМА ОБРАТНОЙ СВЯЗИ ===== */
-.form-wrapper {
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  padding: 8px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-}
-.ya-form {
-  width: 100%;
-  min-height: 520px;
-  height: 520px;
-  border: none;
-  display: block;
-  border-radius: calc(var(--radius-md) - 8px);
-  background: var(--surface);
-  transition: height .3s ease;
-}
-.form-note {
-  font-size: 12px;
-  color: rgba(250, 247, 242, 0.55);
-  margin-top: 10px;
-  line-height: 1.5;
-}
-.form-note a {
-  color: var(--accent-light);
-  text-decoration: underline;
-}
-
-.contacts-divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 28px 0 20px;
-  color: rgba(250, 247, 242, 0.5);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-.contacts-divider::before,
-.contacts-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(250, 247, 242, 0.15);
-}
-
 .contacts-buttons {
   display: flex;
   gap: 12px;
@@ -680,13 +630,8 @@ ul, ol { list-style: none; }
 @media (max-width: 900px) {
   .contact-btn { flex: 1 1 45%; }
 }
-@media (max-width: 700px) {
-  .ya-form { min-height: 480px; height: 480px; }
-  .form-wrapper { padding: 4px; }
-}
 @media (max-width: 600px) {
   .contact-btn { flex: 1 1 100%; }
-  .ya-form { min-height: 440px; height: 440px; }
 }
 
 /* FOOTER */
@@ -1128,35 +1073,10 @@ ul, ol { list-style: none; }
     <div class="reveal">
       <div class="section-label">Контакты</div>
       <h2 class="section-title" id="contacts-title">Давайте <em>обсудим</em> ваш проект</h2>
-      <p class="section-subtitle">Заполните форму — мы свяжемся с вами в течение часа. Или выберите удобный способ связи ниже.</p>
+      <p class="section-subtitle">Свяжитесь с нами любым удобным способом — мы ответим в течение часа.</p>
     </div>
 
     <div class="contacts-wrapper reveal">
-
-      <!-- Форма обратной связи Яндекс Формы -->
-      <div class="form-wrapper">
-        <script src="https://forms.yandex.ru/_static/embed.js"></script>
-        <iframe
-          id="yaFormIframe"
-          src="https://forms.yandex.ru/u/6b04c23e49af47a530523ddc?iframe=1&iframe_post_message=1"
-          frameborder="0"
-          name="ya-form-6b04c23e49af47a530523ddc"
-          class="ya-form"
-          title="Форма заявки на разработку сайта"
-          loading="lazy"
-          allow="clipboard-write">
-        </iframe>
-      </div>
-      <p class="form-note">
-        Отправляя форму, вы соглашаетесь с <a href="policy.html">политикой конфиденциальности</a> и обработкой персональных данных.
-      </p>
-
-      <!-- Разделитель -->
-      <div class="contacts-divider">
-        <span>или свяжитесь напрямую</span>
-      </div>
-
-      <!-- Кнопки контактов -->
       <div class="contacts-buttons">
         <a href="mailto:eanka-info@mail.ru" class="contact-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
@@ -1282,29 +1202,6 @@ cookieAccept.addEventListener('click', () => {
   localStorage.setItem('cookieAccepted', 'true');
   cookieBanner.classList.remove('show');
 });
-
-/* ===== АВТОПОДСТРОЙКА ВЫСОТЫ ЯНДЕКС ФОРМЫ ===== */
-(function() {
-  const iframe = document.getElementById('yaFormIframe');
-  if (!iframe) return;
-
-  const defaultHeight = window.innerWidth < 600 ? 440 : (window.innerWidth < 700 ? 480 : 520);
-
-  window.addEventListener('message', function(event) {
-    if (event.origin !== 'https://forms.yandex.ru') return;
-    
-    const height = event.data?.height ?? event.data?.yaFormHeight;
-    if (typeof height === 'number' && height > 0) {
-      iframe.style.height = (height + 20) + 'px';
-    }
-  }, false);
-
-  setTimeout(function() {
-    if (iframe.style.height === '' || iframe.style.height === '0px') {
-      iframe.style.height = defaultHeight + 'px';
-    }
-  }, 2000);
-})();
 </script>
 
 </body>
