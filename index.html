@@ -612,10 +612,12 @@ ul, ol { list-style: none; }
 .ya-form {
   width: 100%;
   min-height: 640px;
+  height: 640px;
   border: none;
   display: block;
   border-radius: calc(var(--radius-md) - 8px);
   background: var(--surface);
+  transition: height .3s ease;
 }
 .form-note {
   font-size: 12px;
@@ -679,12 +681,12 @@ ul, ol { list-style: none; }
   .contact-btn { flex: 1 1 45%; }
 }
 @media (max-width: 700px) {
-  .ya-form { min-height: 760px; }
+  .ya-form { min-height: 560px; height: 560px; }
   .form-wrapper { padding: 4px; }
 }
 @media (max-width: 600px) {
   .contact-btn { flex: 1 1 100%; }
-  .ya-form { min-height: 820px; }
+  .ya-form { min-height: 500px; height: 500px; }
 }
 
 /* FOOTER */
@@ -1113,7 +1115,8 @@ ul, ol { list-style: none; }
       <div class="form-wrapper">
         <script src="https://forms.yandex.ru/_static/embed.js"></script>
         <iframe
-          src="https://forms.yandex.ru/u/6b04c23e49af47a530523ddc?iframe=1"
+          id="yaFormIframe"
+          src="https://forms.yandex.ru/u/6b04c23e49af47a530523ddc?iframe=1&iframe_post_message=1"
           frameborder="0"
           name="ya-form-6b04c23e49af47a530523ddc"
           class="ya-form"
@@ -1247,6 +1250,34 @@ cookieAccept.addEventListener('click', () => {
   localStorage.setItem('cookieAccepted', 'true');
   cookieBanner.classList.remove('show');
 });
+
+/* ===== АВТОПОДСТРОЙКА ВЫСОТЫ ЯНДЕКС ФОРМЫ ===== */
+(function() {
+  const iframe = document.getElementById('yaFormIframe');
+  if (!iframe) return;
+
+  // Начальная высота по умолчанию
+  const defaultHeight = window.innerWidth < 600 ? 500 : (window.innerWidth < 700 ? 560 : 640);
+
+  window.addEventListener('message', function(event) {
+    // Яндекс Формы отправляют сообщение с высотой в формате {height: число}
+    if (event.origin !== 'https://forms.yandex.ru') return;
+    if (!event.data || typeof event.data.height !== 'number') return;
+
+    // Добавляем небольшой запас, чтобы форма не обрезалась
+    const newHeight = event.data.height + 16;
+    iframe.style.height = newHeight + 'px';
+    iframe.style.minHeight = newHeight + 'px';
+  }, false);
+
+  // Запасной вариант: если postMessage не сработал через 3 секунды,
+  // оставляем дефолтную высоту
+  setTimeout(function() {
+    if (iframe.style.height === '') {
+      iframe.style.height = defaultHeight + 'px';
+    }
+  }, 3000);
+})();
 </script>
 
 </body>
