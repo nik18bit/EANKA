@@ -1294,28 +1294,36 @@ cookieAccept.addEventListener('click', () => {
   const heroVideo = document.querySelector('.hero-video video');
   if (!heroVideo) return;
   
+  // Добавляем CSS transition для плавности
+  heroVideo.style.transition = 'opacity 2s cubic-bezier(0.4, 0, 0.2, 1)';
+  
   const cycleDuration = 10;
+  let lastState = 'visible';
   
   heroVideo.addEventListener('timeupdate', function() {
     const currentTime = this.currentTime;
     const normalizedTime = currentTime % cycleDuration;
     
-    let opacity = 1;
+    // Определяем текущее состояние
+    let targetOpacity = 1;
+    let currentState = 'visible';
     
-    if (normalizedTime >= 4 && normalizedTime < 5) {
-      opacity = 1 - (normalizedTime - 4);
+    // 3.5-5.5 сек: плавное затухание (2 секунды)
+    if (normalizedTime >= 3.5 && normalizedTime < 5.5) {
+      targetOpacity = 0;
+      currentState = 'fading';
     }
-    else if (normalizedTime >= 5 && normalizedTime < 6) {
-      opacity = 0;
-    }
-    else if (normalizedTime >= 6 && normalizedTime < 7) {
-      opacity = normalizedTime - 6;
-    }
-    else {
-      opacity = 1;
+    // 5.5-7.5 сек: плавное появление (2 секунды)
+    else if (normalizedTime >= 5.5 && normalizedTime < 7.5) {
+      targetOpacity = 1;
+      currentState = 'appearing';
     }
     
-    this.style.opacity = opacity;
+    // Применяем opacity только при смене состояния
+    if (currentState !== lastState) {
+      this.style.opacity = targetOpacity;
+      lastState = currentState;
+    }
   });
 })();
 </script>
