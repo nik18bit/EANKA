@@ -252,18 +252,22 @@
     padding: 110px 0 60px;
     position: relative;
     overflow: hidden;
+    background: var(--bg);
   }
 
+  /* Видео уменьшено: правая часть экрана, вписано целиком */
   .hero-video {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 55%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     z-index: 0;
+    pointer-events: none;
   }
 
+  /* Мягкое слияние левого края видео с бежевым фоном сайта */
   .hero::before {
     content: '';
     position: absolute;
@@ -272,10 +276,9 @@
     pointer-events: none;
     background: linear-gradient(
       to right,
-      rgba(250, 247, 242, .95) 0%,
-      rgba(250, 247, 242, .90) 28%,
-      rgba(250, 247, 242, .55) 55%,
-      rgba(250, 247, 242, 0) 78%
+      var(--bg) 0%,
+      rgba(250, 247, 242, .92) 36%,
+      rgba(250, 247, 242, 0) 50%
     );
   }
 
@@ -285,11 +288,11 @@
     display: block;
   }
 
+  /* Текстовый блок прижат к левому краю контейнера */
   .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 55%;
+    max-width: 560px;
     text-align: left;
   }
 
@@ -358,23 +361,24 @@
   }
   .hero-meta-item .lbl { font-size: 11px; color: var(--text-muted); letter-spacing: .02em; }
 
+  /* Планшет и мобильные: видео на всю ширину + вертикальное затемнение */
   @media (max-width: 960px) {
-    .hero-content { max-width: 72%; }
+    .hero-video { width: 100%; object-fit: cover; }
+    .hero::before {
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 247, 242, .95) 0%,
+        rgba(250, 247, 242, .88) 55%,
+        rgba(250, 247, 242, .80) 100%
+      );
+    }
+    .hero-content { max-width: 100%; }
     .hero-meta { gap: 20px; }
     .hero-actions { flex-wrap: wrap; }
   }
 
   @media (max-width: 768px) {
     .hero { padding: 90px 0 40px; }
-    .hero-content { max-width: 100%; }
-    .hero::before {
-      background: linear-gradient(
-        to bottom,
-        rgba(250, 247, 242, .93) 0%,
-        rgba(250, 247, 242, .87) 55%,
-        rgba(250, 247, 242, .78) 100%
-      );
-    }
   }
 
   /* SERVICES */
@@ -899,7 +903,7 @@
   <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="images/office.jpg" aria-hidden="true" tabindex="-1">
     <source src="hero-bg.mp4" type="video/mp4">
   </video>
-  
+
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="hero-badge reveal">
@@ -1263,7 +1267,7 @@ cookieAccept.addEventListener('click', () => {
   cookieBanner.classList.remove('show');
 });
 
-// Остановка видео при включённой настройке "уменьшение движения" (доступность)
+// Остановка видео при настройке «уменьшить движение» (доступность)
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideo) heroVideo.pause();
