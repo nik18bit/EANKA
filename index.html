@@ -255,19 +255,19 @@
     background: var(--bg);
   }
 
-  /* Видео уменьшено: правая часть экрана, вписано целиком */
+  /* Видео на весь экран */
   .hero-video {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 55%;
+    left: 0;
+    width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     z-index: 0;
     pointer-events: none;
   }
 
-  /* Мягкое слияние левого края видео с бежевым фоном сайта */
+  /* Градиент: плотный бежевый слева (где текст) → прозрачный справа (где люди) */
   .hero::before {
     content: '';
     position: absolute;
@@ -276,19 +276,27 @@
     pointer-events: none;
     background: linear-gradient(
       to right,
-      var(--bg) 0%,
-      rgba(250, 247, 242, .92) 36%,
-      rgba(250, 247, 242, 0) 50%
+      rgba(250, 247, 242, .97) 0%,
+      rgba(250, 247, 242, .92) 30%,
+      rgba(250, 247, 242, .55) 55%,
+      rgba(250, 247, 242, 0) 75%
     );
+  }
+
+  /* Внутри hero контейнер растянут на всю ширину с небольшим отступом слева — текст прижимается к левому краю экрана */
+  .hero .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0 5vw;
   }
 
   .hero-inner {
     position: relative;
     z-index: 2;
     display: block;
+    width: 100%;
   }
 
-  /* Текстовый блок прижат к левому краю контейнера */
   .hero-content {
     display: flex;
     flex-direction: column;
@@ -361,9 +369,9 @@
   }
   .hero-meta-item .lbl { font-size: 11px; color: var(--text-muted); letter-spacing: .02em; }
 
-  /* Планшет и мобильные: видео на всю ширину + вертикальное затемнение */
+  /* Планшет и мобильные: вертикальное затемнение на весь экран */
   @media (max-width: 960px) {
-    .hero-video { width: 100%; object-fit: cover; }
+    .hero .container { padding: 0 24px; }
     .hero::before {
       background: linear-gradient(
         to bottom,
@@ -379,6 +387,7 @@
 
   @media (max-width: 768px) {
     .hero { padding: 90px 0 40px; }
+    .hero .container { padding: 0 20px; }
   }
 
   /* SERVICES */
